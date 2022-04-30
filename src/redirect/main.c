@@ -16,6 +16,7 @@
 #include <libgen.h>
 #include <stdarg.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -156,7 +157,11 @@ static void lsi_redirect_init_tables(void)
         /* Try to explicitly open libc. We can't safely rely on RTLD_NEXT
          * as we might be dealing with a strange link order
          */
+        #if UINTPTR_MAX == 0xffffffffffffffff
         lsi_table.handles.libc = dlopen("libc.so.6", RTLD_LAZY);
+        #else
+        lsi_table.handles.libc = dlopen("/usr/lib32/libc.so.6", RTLD_LAZY);
+        #endif
         if (!lsi_table.handles.libc) {
                 fprintf(stderr, "Unable to grab libc.so.6 handle: %s\n", dlerror());
                 goto failed;
