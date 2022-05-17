@@ -161,6 +161,7 @@ static void lsi_redirect_init_tables(void)
         lsi_table.handles.libc = dlopen("libc.so.6", RTLD_LAZY);
         #else
         lsi_table.handles.libc = dlopen("/usr/lib32/libc.so.6", RTLD_LAZY);
+        fprintf(stderr, "Loading 32bit libc");
         #endif
         if (!lsi_table.handles.libc) {
                 fprintf(stderr, "Unable to grab libc.so.6 handle: %s\n", dlerror());
