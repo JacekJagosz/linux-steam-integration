@@ -314,7 +314,7 @@ bool shim_bootstrap()
         } else {
                 /* Only preload when needed. */
                 if (lsi_system_requires_preload()) {
-                        shim_export_merge_vars("LD_PRELOAD", operation_prefix, lsi_preload_list());
+                        shim_export_merge_vars(lsi_preload_list(), "LD_PRELOAD", operation_prefix);
                 }
                 setenv("STEAM_RUNTIME", "1", 1);
         }
