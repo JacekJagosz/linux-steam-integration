@@ -88,7 +88,7 @@ static LsiRedirectProfile *lsi_profile = NULL;
  * all of our needed dlsym() functions from libc.so.6.
  */
 static LsiSymbolBinding lsi_libc_bindings[] = {
-        SYMBOL_BINDING(/usr/lib32/libc.so.6, open),
+        SYMBOL_BINDING(libc, open),
         SYMBOL_BINDING(libc, fopen64),
 #ifdef HAVE_SNAPD_SUPPORT
         SYMBOL_BINDING(libc, getpwuid),
